@@ -20,7 +20,8 @@ public:
 
         void Reset() override
         {
-            if (sProgressionMgr->GetPhaseId() >= 5 && sWorldState->getWorldState(WORLD_STATE_AQ_GATE_OPENED))
+            if (sProgressionMgr->GetPatchId() >= PATCH_THE_GATES_OF_AHN_QIRAJ &&
+                sWorldState->getWorldState(WORLD_STATE_AQ_GATE_OPENED))
             {
                 me->ResetDoorOrButton();
                 me->UseDoorOrButton();
