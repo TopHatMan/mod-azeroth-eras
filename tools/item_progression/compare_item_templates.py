@@ -24,9 +24,41 @@ CREATE_START = re.compile(r"^CREATE TABLE `item_template` \(")
 COLUMN = re.compile(r"^\s*`([^`]+)`\s+")
 INSERT_START = re.compile(r"^INSERT INTO `item_template`(?:\s*\([^)]*\))? VALUES")
 
-# Safe name aliases. Server-specific fields are deliberately not mapped here.
+# Safe semantic aliases. Case and separators are normalized automatically;
+# server-specific fields are deliberately not mapped here.
 COLUMN_ALIASES = {
-    "duration": "duration",
+    "area_bound": "area",
+    "bag_family": "bagfamily",
+    "buy_count": "buycount",
+    "buy_price": "buyprice",
+    "container_slots": "containerslots",
+    "disenchant_id": "disenchantid",
+    "display_id": "displayid",
+    "food_type": "foodtype",
+    "inventory_type": "inventorytype",
+    "item_level": "itemlevel",
+    "lock_id": "lockid",
+    "map_bound": "map",
+    "max_count": "maxcount",
+    "max_durability": "maxdurability",
+    "max_money_loot": "maxmoneyloot",
+    "min_money_loot": "minmoneyloot",
+    "page_language": "languageid",
+    "page_material": "pagematerial",
+    "page_text": "pagetext",
+    "random_property": "randomproperty",
+    "range_mod": "rangedmodrange",
+    "required_city_rank": "requiredcityrank",
+    "required_honor_rank": "requiredhonorrank",
+    "required_level": "requiredlevel",
+    "required_reputation_faction": "requiredreputationfaction",
+    "required_reputation_rank": "requiredreputationrank",
+    "required_skill": "requiredskill",
+    "required_skill_rank": "requiredskillrank",
+    "required_spell": "requiredspell",
+    "sell_price": "sellprice",
+    "set_id": "itemset",
+    "start_quest": "startquest",
 }
 
 # These columns need a deliberate conversion or policy instead of name matching.
@@ -248,7 +280,8 @@ def iter_rows(path: Path, columns: Sequence[str]) -> Iterator[tuple]:
 
 def canonical_column(name: str) -> str:
     lowered = name.lower()
-    return COLUMN_ALIASES.get(lowered, lowered)
+    aliased = COLUMN_ALIASES.get(lowered, lowered)
+    return re.sub(r"[^a-z0-9]", "", aliased)
 
 
 def compatible_columns(left: Sequence[str], right: Sequence[str]) -> list[tuple[str, int, int]]:
