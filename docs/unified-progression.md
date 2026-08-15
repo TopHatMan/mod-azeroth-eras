@@ -269,7 +269,7 @@ The current patch ID map remains `0..21`. Patch aliases may be added for readabi
 | MC seven-rune/Aqual Quintessence behavior | Both source modules | **Not merged** | Safe `instance_molten_core` override plus tests |
 | Kazzak and selected restored encounters | Both source modules | **Not merged/audited** | Port only when patch ownership and core conflicts are resolved |
 | Onyxia launch Horde attunement | Historical audit/Individual Progression evidence | **Implemented in branch** | In-game validation; Alliance chain audit |
-| Naxxramas 40 | Individual Progression | **Not merged** | Separate map/content identity and routing from Naxxramas 80 |
+| Naxxramas 40 | `sogladev/mod-vanilla-naxxramas` | **External runtime selected; contract documented** | Patch/level handshake and separate routing from Naxxramas 80 |
 | Combat scaling | Current module and Individual Progression | **Conflict remains**; current defaults are damage `0.6`, healing `0.5` pre-Wrath | One owner; use `1.0` in this module when external difficulty owns tuning |
 | Deterministic backward transitions | New architecture | **Designed, not implemented** | Transactional reconciler with baseline restoration |
 | Client-data package | Individual Progression optional assets | **Not merged/audited** | Versioned, optional package with compatibility reporting |
@@ -287,7 +287,7 @@ The current patch ID map remains `0..21`. Patch aliases may be added for readabi
 
 ### What has not been merged
 
-No character progression persistence, player-aware visibility, or Playerbots scope logic from Individual Progression is active in this repository yet. Its large historical SQL sets, Naxxramas 40 implementation, and most encounter scripts are also not present as unified owned bundles. The old bracket module's Boolean loader and down-file chain are intentionally not being copied.
+No character progression persistence, player-aware visibility, or Playerbots scope logic from Individual Progression is active in this repository yet. Its large historical SQL sets and most encounter scripts are also not present as unified owned bundles. Its Naxxramas 40 implementation will not be imported: the deployment uses `sogladev/mod-vanilla-naxxramas` under the dedicated [integration contract](research/vanilla-naxxramas-integration.md). The old bracket module's Boolean loader and down-file chain are intentionally not being copied.
 
 ## Runtime and persistence design
 
@@ -361,7 +361,7 @@ Patch selection and raid-clear progression are related but not identical. Histor
 2. Extract vMaNGOS 1.2-1.12 item and acquisition snapshots, then audit them in order against primary evidence and cMangos, producing reviewed adjacent-patch diffs.
 3. Port selected MC, Kazzak, raid, event, vendor, and loot behavior from the source modules only when its owning bundle is ready.
 4. Implement and validate deterministic down-transitions.
-5. Complete Naxxramas 40 as a separate Vanilla bundle.
+5. Complete the patch/level/client compatibility handshake with the external Naxxramas 40 module.
 
 ### Phase 3 — Scope merge
 
