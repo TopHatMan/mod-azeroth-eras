@@ -59,6 +59,11 @@ void RegisterProgressionScripts()
 // AzerothCore derives the loader symbol from the module directory name.
 // Supporting both names makes the fork work whether installed as mod-progression
 // or mod-02-progression (the Ashbringer module ordering convention).
+void Addmod_azeroth_erasScripts()
+{
+    RegisterProgressionScripts();
+}
+
 void Addmod_progressionScripts()
 {
     RegisterProgressionScripts();
