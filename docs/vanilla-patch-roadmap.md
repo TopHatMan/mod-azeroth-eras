@@ -108,6 +108,10 @@ This list is an audit framework, not a claim that every existing SQL row is alre
 7. Audit holiday/event tables so later events do not accidentally run at 1.1.
 8. Check later-expansion NPC leakage not covered by the existing hidden-content list.
 
+## 1.11 Scourge Invasion
+
+The original invasion is now tracked as an owned event bundle rather than a single `game_event` toggle. The first correction gates AzerothCore/vMaNGOS event `17` at patch 1.11; the inherited SQL had only toggled event `1`, which is Midsummer Fire Festival. The complete lifecycle, source map, Vanilla/Wrath separation rules, and implementation slices are documented in [`research/vanilla-scourge-invasion.md`](research/vanilla-scourge-invasion.md).
+
 ## Loader reliability
 
 A patch emulator is useless if the database layers silently fail to run. The loader therefore must:
