@@ -1,0 +1,25 @@
+name: core-build
+on:
+  push:
+    branches:
+      - 'master'
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+
+jobs:
+  progression-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate progression bundles
+        run: python3 -m unittest discover -s tests -v
+
+  build:
+    if: github.event.pull_request.draft == false
+    uses: azerothcore/reusable-workflows/.github/workflows/core_build_modules.yml@main
+    with:
+      module_repo: ${{ github.event.repository.name }}

@@ -1,0 +1,153 @@
+[worldserver]
+
+###################################################################################################
+# Unified Progression
+#
+# The module has two server-wide progression axes:
+#   1. Level milestones (10, 20, 30, 40, 50, 60, 70, 80)
+#   2. Historical patch progression (1.1 through 3.3.5)
+#
+# Instance access is the intersection of both axes: reaching a level milestone never bypasses a
+# patch lock, and advancing a patch never bypasses a level milestone.
+###################################################################################################
+
+#
+#    Progression.LevelGating.Enabled
+#        Description: Enable the level-milestone progression system migrated from
+#                     mod-progression-system.
+#        Default:     1
+#
+Progression.LevelGating.Enabled = 1
+
+#
+#    Progression.LevelCap
+#        Description: Current server progression level cap. Valid values:
+#                     10, 20, 30, 40, 50, 60, 70, 80.
+#                     The active patch era still provides an absolute ceiling:
+#                     Vanilla=60, TBC=70, Wrath=80.
+#
+#                     10 - leveling only; no instanced dungeon milestone unlocked
+#                     20 - RFC, WC, Deadmines, SFK, BFD
+#                     30 - Stockades, RFK, Gnomeregan
+#                     40 - Uldaman, RFD, Scarlet Monastery
+#                     50 - Sunken Temple, Zul'Farrak, Maraudon (only once patch allows it)
+#                     60 - late Vanilla dungeons and patch-gated Vanilla raids
+#                     70 - TBC instances, still subject to TBC patch gates
+#                     80 - Wrath instances, still subject to Wrath patch gates
+#
+#        Default:     60
+#
+Progression.LevelCap = 60
+
+#
+#    Progression.Patch
+#        Description: The currently active World of Warcraft patch.
+#                     Patch SQL is cumulative: selecting 1.6 applies 1.1 through 1.6.
+#
+#                     0  - 1.1   World of Warcraft
+#                     1  - 1.2   Mysteries of Maraudon
+#                     2  - 1.3   Ruins of the Dire Maul
+#                     3  - 1.4   The Call to War
+#                     4  - 1.5   Battlegrounds
+#                     5  - 1.6   Assault on Blackwing Lair
+#                     6  - 1.7   Rise of the Blood God
+#                     7  - 1.8   Dragons of Nightmare
+#                     8  - 1.9   The Gates of Ahn'Qiraj
+#                     9  - 1.10  Storms of Azeroth
+#                     10 - 1.11  Shadow of the Necropolis
+#                     11 - 1.12  Drums of War
+#                     12 - 2.0   Before the Storm
+#                     13 - 2.1   Black Temple
+#                     14 - 2.2   Voice Chat
+#                     15 - 2.3   The Gods of Zul'Aman
+#                     16 - 2.4   Fury of the Sunwell
+#                     17 - 3.0   Echoes of Doom
+#                     18 - 3.1   Secrets of Ulduar
+#                     19 - 3.2   Call of the Crusade
+#                     20 - 3.3   Fall of the Lich King
+#                     21 - 3.3.5 Assault on the Ruby Sanctum
+#
+#        Default:     0 - Patch 1.1
+#
+Progression.Patch = 0
+
+#
+#    Progression.ModuleDirectory
+#        Description: Optional source-folder override for patch SQL auto-loading.
+#                     Leave unset for automatic detection of mod-02-progression or mod-progression.
+#        Example:     Progression.ModuleDirectory = mod-02-progression
+#
+
+#
+#    Progression.IcecrownCitadel.Aura
+#        Description: Set the Icecrown Citadel faction aura.
+#                     0 - No buff
+#                     1 - 5%
+#                     2 - 10%
+#                     3 - 15%
+#                     4 - 20%
+#                     5 - 25%
+#        Default:     6 - 30%
+#
+Progression.IcecrownCitadel.Aura = 6
+
+#
+#    Progression.QuestInfo.Enforced
+#        Description: Enforce patch-era quest markers, sparkles and points of interest.
+#        Default:     1
+#
+Progression.QuestInfo.Enforced = 1
+
+#
+#    Progression.DualTalent.Enforced
+#        Description: Enforce patch-era availability of dual talent specialization.
+#        Default:     1
+#
+Progression.DualTalent.Enforced = 1
+
+#
+#    Progression.TradableBindsOnPickup.Enforced
+#        Description: Enforce patch-era BoP trade behavior.
+#        Default:     1
+#
+Progression.TradableBindsOnPickup.Enforced = 1
+
+#
+#    Progression.DungeonFinder.Enforced
+#        Description: Enforce patch-era Dungeon Finder availability.
+#        Default:     1
+#
+Progression.DungeonFinder.Enforced = 1
+
+#
+#    Progression.Multiplier.Damage
+#        Description: Approximate pre-Wrath player damage on the 3.3.5 client/core.
+#        Default:     0.6
+#
+Progression.Multiplier.Damage = 0.6
+
+#
+#    Progression.Multiplier.Healing
+#        Description: Approximate pre-Wrath player healing on the 3.3.5 client/core.
+#        Default:     0.5
+#
+Progression.Multiplier.Healing = 0.5
+
+#
+#    Progression.Reset
+#        Description: Reapply all selected patch SQL on startup by clearing patch_* updater records.
+#                     Development aid only. This is not a database rollback mechanism and must not
+#                     be used instead of a verified snapshot when changing a production realm.
+#        Default:     0
+#
+Progression.Reset = 0
+
+#
+#    Progression.Development.AllowUnsafeReset
+#        Description: Required second switch for Progression.Reset. Enable only on a disposable
+#                     development database after taking a verified snapshot.
+#        Default:     0
+#
+Progression.Development.AllowUnsafeReset = 0
+
+###################################################################################################
