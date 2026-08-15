@@ -3,7 +3,7 @@ DELETE FROM `disables` WHERE `sourceType` = 2 AND `entry` IN (269, 309, 349, 429
 DELETE FROM `disables` WHERE `sourceType` = 3 AND `entry` IN (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 30, 32);
 DELETE FROM `disables` WHERE `sourceType` = 4 AND `entry` IN (12558, 12559, 12564, 12565, 12566, 12567, 12568, 12569);
 DELETE FROM `disables` WHERE `sourceType` = 5 AND `entry` IN (1, 2, 3, 4, 5, 6, 7);
-DELETE FROM `disables` WHERE `sourceType` = 9 AND `entry` IN (1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 23, 24, 26, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 70, 71, 76, 77, 90, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115);
+DELETE FROM `disables` WHERE `sourceType` = 9 AND `entry` IN (1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 26, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 70, 71, 76, 77, 90, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115);
 DELETE FROM `disables` WHERE `sourceType` = 10 AND `entry` IN (17413, 17414, 17682, 17683, 18563, 18564, 18600, 18646, 18665, 18705, 18987, 19803, 19805, 19806, 19807, 19808, 21103, 21104, 21105, 21108, 21110, 21877, 27859, 27860, 31952, 49205, 50289, 50432);
 INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, `comment`) VALUES
 (1, 7028, 0, '', '', 'Twisted Evils'),
@@ -150,6 +150,7 @@ INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, 
 (9, 14, 0, '', '', 'Stranglethorn Fishing Extravaganza Announce'),
 (9, 15, 0, '', '', 'Stranglethorn Fishing Extravaganza Fishing Pools'),
 (9, 16, 0, '', '', 'Gurubashi Arena Booty Run'),
+(9, 17, 0, '', '', 'Scourge Invasion'),
 (9, 18, 0, '', '', 'Call to Arms: Alterac Valley!'),
 (9, 19, 0, '', '', 'Call to Arms: Warsong Gulch!'),
 (9, 20, 0, '', '', 'Call to Arms: Arathi Basin!'),
