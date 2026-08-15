@@ -26,6 +26,14 @@
     {"battles_won": 150, "event_id": 98}
   ],
   "completion_event_id": 99,
+  "naxxramas_integration": {
+    "runtime_owner": "sogladev/mod-vanilla-naxxramas",
+    "minimum_revision": "5e6f54fd776e07a76ef3a4f81fc5a57c76badd30",
+    "map_id": 533,
+    "vanilla_difficulty": "10-player-heroic",
+    "relationship": "independent-patch-1.11-bundle",
+    "individual_progression_runtime_allowed": false
+  },
   "lifecycle": [
     "select-up-to-two-active-zones",
     "spawn-necropolis-and-camps",
