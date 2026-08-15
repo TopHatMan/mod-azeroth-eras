@@ -1,0 +1,1 @@
+UPDATE `gameobject` SET `phaseMask` = 1 WHERE `id` IN (195213, 195214, 195695, 202184, 202277, 202278);
