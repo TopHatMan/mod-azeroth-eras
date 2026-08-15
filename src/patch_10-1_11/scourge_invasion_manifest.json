@@ -9,30 +9,65 @@
     "boss_instance_event_id": 81
   },
   "invasion_zones": [
-    {"name": "Winterspring", "event_id": 90},
-    {"name": "Tanaris", "event_id": 91},
-    {"name": "Azshara", "event_id": 92},
-    {"name": "Blasted Lands", "event_id": 93},
-    {"name": "Eastern Plaguelands", "event_id": 94},
-    {"name": "Burning Steppes", "event_id": 95}
+    {
+      "name": "Winterspring",
+      "event_id": 90
+    },
+    {
+      "name": "Tanaris",
+      "event_id": 91
+    },
+    {
+      "name": "Azshara",
+      "event_id": 92
+    },
+    {
+      "name": "Blasted Lands",
+      "event_id": 93
+    },
+    {
+      "name": "Eastern Plaguelands",
+      "event_id": 94
+    },
+    {
+      "name": "Burning Steppes",
+      "event_id": 95
+    }
   ],
   "city_attacks": [
-    {"name": "Stormwind", "event_id": 129},
-    {"name": "Undercity", "event_id": 130}
+    {
+      "name": "Stormwind",
+      "event_id": 129
+    },
+    {
+      "name": "Undercity",
+      "event_id": 130
+    }
   ],
   "realm_milestones": [
-    {"battles_won": 50, "event_id": 96},
-    {"battles_won": 100, "event_id": 97},
-    {"battles_won": 150, "event_id": 98}
+    {
+      "battles_won": 50,
+      "event_id": 96
+    },
+    {
+      "battles_won": 100,
+      "event_id": 97
+    },
+    {
+      "battles_won": 150,
+      "event_id": 98
+    }
   ],
   "completion_event_id": 99,
   "naxxramas_integration": {
     "runtime_owner": "sogladev/mod-vanilla-naxxramas",
-    "minimum_revision": "5e6f54fd776e07a76ef3a4f81fc5a57c76badd30",
     "map_id": 533,
     "vanilla_difficulty": "10-player-heroic",
     "relationship": "independent-patch-1.11-bundle",
-    "individual_progression_runtime_allowed": false
+    "individual_progression_runtime_allowed": false,
+    "integration_profile": "ashbringer-patched",
+    "expansion_2_required": false,
+    "external_client_patch_required": false
   },
   "lifecycle": [
     "select-up-to-two-active-zones",
@@ -49,9 +84,38 @@
     "stop-event-and-clean-runtime-summons"
   ],
   "critical_entities": {
-    "items": [22484],
-    "creatures": [14697, 16136, 16141, 16143, 16172, 16230, 16298, 16299, 16379, 16380, 16382, 16383, 16394, 16398, 16401, 16421, 16995],
-    "gameobjects": [181136, 181142, 181154, 181172, 181215, 181223, 181373, 181374]
+    "items": [
+      22484
+    ],
+    "creatures": [
+      14697,
+      16136,
+      16141,
+      16143,
+      16172,
+      16230,
+      16298,
+      16299,
+      16379,
+      16380,
+      16382,
+      16383,
+      16394,
+      16398,
+      16401,
+      16421,
+      16995
+    ],
+    "gameobjects": [
+      181136,
+      181142,
+      181154,
+      181172,
+      181215,
+      181223,
+      181373,
+      181374
+    ]
   },
   "implementation_status": {
     "patch_gate": "implemented",
