@@ -361,7 +361,7 @@ Patch selection and raid-clear progression are related but not identical. Histor
 2. Extract vMaNGOS 1.2-1.12 item and acquisition snapshots, then audit them in order against primary evidence and cMangos, producing reviewed adjacent-patch diffs.
 3. Port selected MC, Kazzak, raid, event, vendor, and loot behavior from the source modules only when its owning bundle is ready.
 4. Implement and validate deterministic down-transitions.
-5. Complete the patch/level/client compatibility handshake with the external Naxxramas 40 module.
+5. Complete the patch/level/module compatibility handshake with the patched Ashbringer Naxxramas 40 module.
 
 ### Phase 3 — Scope merge
 
