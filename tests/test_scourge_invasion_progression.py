@@ -64,6 +64,16 @@ class ScourgeInvasionProgressionTests(unittest.TestCase):
             "stop-event-and-clean-runtime-summons", manifest["lifecycle"]
         )
 
+    def test_manifest_names_the_single_naxxramas_40_runtime_owner(self):
+        manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+        integration = manifest["naxxramas_integration"]
+        self.assertEqual(
+            integration["runtime_owner"], "sogladev/mod-vanilla-naxxramas"
+        )
+        self.assertEqual(integration["map_id"], 533)
+        self.assertEqual(integration["vanilla_difficulty"], "10-player-heroic")
+        self.assertFalse(integration["individual_progression_runtime_allowed"])
+
 
 if __name__ == "__main__":
     unittest.main()
