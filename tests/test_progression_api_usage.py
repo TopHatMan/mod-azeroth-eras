@@ -5,6 +5,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
 SCARAB_GATE = SRC / "phase_00" / "scripts" / "Kalimdor" / "Silithus" / "go_scarab_gate.cpp"
+MODULE_ENTRYPOINT = SRC / "mod_progression.cpp"
 
 
 class ProgressionApiUsageTests(unittest.TestCase):
@@ -17,6 +18,10 @@ class ProgressionApiUsageTests(unittest.TestCase):
                     stale_references.append(f"{path.relative_to(ROOT)}: {api}")
 
         self.assertEqual(stale_references, [])
+
+    def test_module_exports_loader_symbol_for_repository_directory_name(self):
+        source = MODULE_ENTRYPOINT.read_text(encoding="utf-8")
+        self.assertIn("void Addmod_azeroth_erasScripts()", source)
 
     def test_scarab_gate_uses_the_historical_aq_patch_boundary(self):
         source = SCARAB_GATE.read_text(encoding="utf-8")
