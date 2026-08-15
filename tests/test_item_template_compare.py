@@ -98,6 +98,17 @@ class ItemTemplateCompareTests(unittest.TestCase):
         self.assertEqual(summary["historical_revision_rows"], 1)
         self.assertEqual(summary["patches"]["2"]["revised_items"], 1)
 
+    def test_canonical_columns_bridge_vmangos_and_azerothcore_names(self):
+        self.assertEqual(MODULE.canonical_column("item_level"), "itemlevel")
+        self.assertEqual(MODULE.canonical_column("ItemLevel"), "itemlevel")
+        self.assertEqual(MODULE.canonical_column("page_language"), "languageid")
+        self.assertEqual(MODULE.canonical_column("LanguageID"), "languageid")
+        self.assertEqual(MODULE.canonical_column("other_team_entry"), "otherteamentry")
+        self.assertNotEqual(
+            MODULE.canonical_column("other_team_entry"),
+            MODULE.canonical_column("TotemCategory"),
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

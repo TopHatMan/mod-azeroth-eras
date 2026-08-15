@@ -59,6 +59,28 @@ python3 tools/item_progression/compare_item_templates.py \
 
 The JSON report is analysis output and should not be loaded into the world database.
 
+### Patch transition candidates
+
+`tools/item_progression/build_patch_transition.py` turns one vMaNGOS patch boundary into a review manifest. For every item row authored at that patch it records the previous Vanilla value, the new Vanilla value, the current AzerothCore Wrath value, and one of three mapping policies:
+
+- `direct-candidate` — the field has a same-name AzerothCore destination, but still requires historical review;
+- `review` — the schemas have a known semantic mismatch;
+- `unmapped` — AzerothCore has no same-name destination.
+
+Example for patch 1.12:
+
+```bash
+python3 tools/item_progression/build_patch_transition.py \
+  --vmangos /path/to/vmangos/mangos.sql \
+  --wrath /path/to/azerothcore/item_template.sql \
+  --patch 10 \
+  --output build/item-transition-1.12.json
+```
+
+This remains candidate evidence rather than executable SQL. Reviewed entries will be promoted into owned patch manifests before SQL generation.
+
+The first 1.12 run contains 200 item transitions: 39 introductions and 161 revisions. Its field decisions comprise 5,187 direct candidates, 390 review-required values, and 78 unavailable mappings. The unavailable fields are `wrapped_gift` and `other_team_entry`; neither is mapped onto an unrelated AzerothCore field. Counts include the complete state of newly introduced items, including default-valued columns.
+
 ### Initial full comparison
 
 The first complete run produced:
