@@ -30,7 +30,7 @@ This preserves the thing that makes Individual Progression special—each charac
 | `IndividualProgressionBG.cpp`, `IndividualProgressionPvP.cpp`, `av*.sql`, `av_quests.cpp` | Original Alterac Valley and Vanilla PvP behavior | Port as patch-owned 1.5+ PvP bundles, with later patch changes audited separately |
 | `vanillaScripts/instance_molten_core.cpp` | Manual rune and Aqual Quintessence behavior | Candidate for the Molten Core bundle after collision review against AzerothCore and the existing module script |
 | Onyxia, Kazzak, Blackrock, AQ, and quest scripts | Restored Vanilla encounter/quest behavior | Import one atomic bundle at a time only after entity ownership, patch timing, and core-script conflicts are tested |
-| `naxx40Scripts/` and `naxx40*.sql` | Vanilla Naxxramas | Preserve as a dedicated 1.11 bundle with separate identity/routing from Wrath Naxxramas |
+| `naxx40Scripts/` and `naxx40*.sql` | Legacy Vanilla Naxxramas implementation | Do not import; the deployment uses [`sogladev/mod-vanilla-naxxramas`](vanilla-naxxramas-integration.md) as the single Naxxramas 40 runtime owner |
 | `data/sql/world/base/item_template.sql` and related loot/vendor SQL | Vanilla/TBC item candidates | Evidence input only; compare against vMaNGOS, cMaNGOS, AzerothCore, and primary patch evidence before generation |
 | Zone and dungeon base SQL | Broad historical world restoration | Never bulk-import. Decompose into reviewed patch bundles so unrelated rows cannot silently overwrite the target baseline |
 | Optional DBC/client archives | Profession, reagent, item, and client-facing changes | Treat as a separately versioned compatibility package; do not commit opaque archives into the module migration path |
@@ -63,7 +63,7 @@ Before source is copied, record its original copyright/license header and comple
 3. Add versioned Azeroth Eras character/account persistence and a repeatable migration with a dry-run report.
 4. Port group and Playerbots synchronization against the shared scope API.
 5. Port awareness hooks using bundle IDs supplied by the authoritative patch catalog.
-6. Port Vanilla content in patch order: launch/MC/Onyxia, 1.5 PvP, later raids/events, then Naxxramas 40.
+6. Port Vanilla content in patch order: launch/MC/Onyxia, 1.5 PvP, and later raids/events; integrate Naxxramas 40 through the dedicated upstream module contract instead of copying Grim's implementation.
 7. Disable and remove overlapping Individual Progression runtime owners only after parity tests pass.
 8. Retire `mod-progression-system`; keep a migration note mapping its supported ten-level brackets to the eight Azeroth Eras milestones.
 
@@ -79,5 +79,5 @@ Do not install all three progression modules on a production database. Until the
 - Patch 1.4 cannot expose a 1.5 battleground even if character encounter progress is advanced.
 - A real player cannot bypass an attunement because a grouped bot is eligible.
 - Damage/healing adjustment is applied once.
-- MC, Onyxia, original Alterac Valley, AQ lifecycle, and Naxxramas 40 each have one registered runtime owner.
+- MC, Onyxia, original Alterac Valley, and AQ lifecycle each have one registered runtime owner; Naxxramas 40 has only `mod-vanilla-naxxramas` registered.
 - Removing the legacy modules after migration does not remove saved progression state.
