@@ -72,6 +72,9 @@ class ScourgeInvasionProgressionTests(unittest.TestCase):
         )
         self.assertEqual(integration["map_id"], 533)
         self.assertEqual(integration["vanilla_difficulty"], "10-player-heroic")
+        self.assertEqual(integration["integration_profile"], "ashbringer-patched")
+        self.assertFalse(integration["expansion_2_required"])
+        self.assertFalse(integration["external_client_patch_required"])
         self.assertFalse(integration["individual_progression_runtime_allowed"])
 
 
