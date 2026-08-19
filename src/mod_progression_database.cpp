@@ -113,7 +113,7 @@ std::vector<std::string> Progression::GetActivePatches()
     uint8 patchId = sConfigMgr->GetOption<uint8>("Progression.Patch", DEFAULT_PROGRESSION_PATCH);
     if (patchId >= PATCH_MAX)
     {
-        LOG_ERROR("server.loading", "Progression: patch id {} is invalid; falling back to patch 1.0 (id {}).", patchId, DEFAULT_PROGRESSION_PATCH);
+        LOG_ERROR("server.loading", "Progression: patch id {} is invalid; falling back to patch 1.1 (id {}).", patchId, DEFAULT_PROGRESSION_PATCH);
         patchId = DEFAULT_PROGRESSION_PATCH;
     }
 

@@ -7,12 +7,12 @@ SRC = ROOT / "src"
 
 
 class ReadyTarget106Tests(unittest.TestCase):
-    def test_launch_id_is_1_0_and_ready_target_is_1_6(self):
+    def test_launch_id_is_1_1_and_ready_target_is_1_6(self):
         header = (SRC / "mod_progression.h").read_text(encoding="utf-8")
-        self.assertIn("PATCH_VANILLA_1_0 = 0", header)
+        self.assertIn("PATCH_VANILLA_1_1 = 0", header)
         self.assertIn("PROGRESSION_READY_TARGET_PATCH = PATCH_ASSAULT_ON_BLACKWING_LAIR", header)
 
-    def test_headline_unlocks_exist_for_1_0_through_1_6(self):
+    def test_headline_unlocks_exist_for_1_1_through_1_6(self):
         expected = {
             "patch_00-1_1": ["(2, 349,", "(2, 429,", "(2, 469,"],
             "patch_01-1_2": ["entry` = 349"],

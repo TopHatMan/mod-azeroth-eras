@@ -29,7 +29,7 @@ public:
     {
         switch (patchId)
         {
-        case PATCH_VANILLA_1_0:                return "1.0 World of Warcraft";
+        case PATCH_VANILLA_1_1:                return "1.1 World of Warcraft";
         case PATCH_MYSTERIES_OF_MARAUDON:      return "1.2 Mysteries of Maraudon";
         case PATCH_RUINS_OF_THE_DIRE_MAUL:     return "1.3 Ruins of the Dire Maul (MC attunement)";
         case PATCH_THE_CALL_TO_WAR:            return "1.4 The Call to War";
@@ -60,7 +60,7 @@ public:
         uint8 patchId = sProgressionMgr->GetPatchId();
         handler->SendSysMessage("Unified Progression Module");
         handler->PSendSysMessage("Patch ID: {} ({})", patchId, PatchDisplayName(patchId));
-        handler->PSendSysMessage("Ready target: 1.0-1.6 (IDs 0-{})", PROGRESSION_READY_TARGET_PATCH);
+        handler->PSendSysMessage("Ready target: 1.1-1.6 (IDs 0-{})", PROGRESSION_READY_TARGET_PATCH);
         if (patchId + 1 < PATCH_MAX)
             handler->PSendSysMessage("Next patch: {} ({})", patchId + 1, PatchDisplayName(patchId + 1));
         handler->PSendSysMessage("Level gating: {}", sProgressionMgr->IsLevelGatingEnabled() ? "enabled" : "disabled");
