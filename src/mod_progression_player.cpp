@@ -260,6 +260,17 @@ bool Progression::OnPlayerCanEnterMap(Player* player, MapEntry const* entry, Ins
     if (!sProgressionMgr->IsLevelGatingEnabled())
         return true;
 
+    // The Vanilla Chromie-style ladder is a launch progression from the
+    // 1-10 stage through the 50-59 stage.  Once the realm reaches 60, level
+    // gating has completed for Vanilla; historical patch and attunement gates
+    // remain authoritative.  Keeping this explicit prevents a future level
+    // table change from accidentally re-locking Vanilla content at level 60.
+    if (sProgressionMgr->GetPatchId() < PATCH_BEFORE_THE_STORM &&
+        sProgressionMgr->GetLevelCap() >= 60)
+    {
+        return true;
+    }
+
     uint8 requiredLevelCap = GetRequiredProgressionLevelCapForMap(entry->MapID);
     if (!requiredLevelCap || sProgressionMgr->GetLevelCap() >= requiredLevelCap)
         return true;

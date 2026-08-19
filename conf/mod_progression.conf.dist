@@ -39,6 +39,13 @@ Progression.LevelGating.Enabled = 1
 #
 Progression.LevelCap = 60
 
+# Vanilla launch-stage interpretation:
+#   cap 10 = the 1-10 launch stage
+#   cap 20 = the next stage, through level 20
+#   cap 30/40/50 = the following ten-level stages
+#   cap 60 = Vanilla Chromie-style dungeon level gating is complete
+# Patch gates and attunements remain enforced at every level, including 60.
+
 #
 #    Progression.Patch
 #        Description: The currently active World of Warcraft patch.
