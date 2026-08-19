@@ -84,7 +84,7 @@ This rule was reinforced during the Vanilla audit by the Molten Core discovery/a
 
 | ID | Patch | Title |
 |---:|:---:|---|
-| 0 | 1.1 | World of Warcraft |
+| 0 | 1.0 | World of Warcraft (launch; Blizzard 1.1.0) |
 | 1 | 1.2 | Mysteries of Maraudon |
 | 2 | 1.3 | Ruins of the Dire Maul |
 | 3 | 1.4 | The Call to War |
@@ -97,7 +97,11 @@ This rule was reinforced during the Vanilla audit by the Molten Core discovery/a
 | 10 | 1.11 | Shadow of the Necropolis |
 | 11 | 1.12 | Drums of War |
 
-TBC and Wrath patch SQL is also present as a foundation, but the active accuracy audit is currently focused on Vanilla before the later eras are trusted as authoritative progression data.
+The **current ready target is 1.0 through 1.6** (IDs `0`–`5`): launch, Maraudon, Dire Maul / MC attunement, Honor, battlegrounds, and Blackwing Lair. See [`docs/vanilla-1.0-1.6-target.md`](docs/vanilla-1.0-1.6-target.md). Later Vanilla IDs still exist so the realm can keep walking the ladder, but they are not the accuracy target yet.
+
+There is no separate public 1.1 content patch. Blizzard shipped launch as client 1.1.0; this project labels that state **1.0** so the playable steps are `1.0 → 1.2 → 1.3 → 1.4 → 1.5 → 1.6`.
+
+TBC and Wrath patch SQL is also present as a foundation, but those eras are not the current target.
 
 ## Accuracy model
 
@@ -114,8 +118,9 @@ See `docs/vanilla-patch-roadmap.md` for the ongoing patch audit and `docs/vanill
 
 The module uses AzerothCore's database updater and loads every patch directory from 1.1 through the selected patch.
 
-It automatically detects either supported module source directory:
+It automatically detects any of these module source directories:
 
+- `mod-azeroth-eras`
 - `mod-02-progression`
 - `mod-progression`
 
@@ -149,6 +154,7 @@ A reset is not intended to be a permanent runtime mode.
 Progression.LevelGating.Enabled = 1
 Progression.LevelCap = 60
 Progression.Patch = 0
+# Advance 0 -> 1 -> 2 -> 3 -> 4 -> 5 for the 1.0-1.6 ready target.
 Progression.Reset = 0
 Progression.Development.AllowUnsafeReset = 0
 ```

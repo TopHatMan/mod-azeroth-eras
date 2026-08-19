@@ -1,6 +1,6 @@
 # Vanilla Patch Accuracy Roadmap
 
-The detailed product design, historical item-state model, implementation phases, and source-module migration status are maintained in [`unified-progression.md`](unified-progression.md). The cross-system definition of Vanilla completion is tracked in [`vanilla-completion-matrix.md`](vanilla-completion-matrix.md).
+The detailed product design, historical item-state model, implementation phases, and source-module migration status are maintained in [`unified-progression.md`](unified-progression.md). The cross-system definition of Vanilla completion is tracked in [`vanilla-completion-matrix.md`](vanilla-completion-matrix.md). What each Vanilla patch can do with SQL, module C++, or a safe core hook — and how to test 1.1 → 1.2 → 1.3 — is in [`research/vanilla-patch-capability.md`](research/vanilla-patch-capability.md).
 
 The current goal is to make `mod-progression` emulate the **historical Vanilla patch cycle** while running on AzerothCore/3.3.5.
 

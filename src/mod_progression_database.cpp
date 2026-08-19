@@ -49,6 +49,7 @@ std::string ResolveProgressionSourcePath()
     if (!configuredDirectory.empty())
         candidates.push_back(configuredDirectory);
 
+    candidates.emplace_back("mod-azeroth-eras");
     candidates.emplace_back("mod-02-progression");
     candidates.emplace_back("mod-progression");
 
@@ -64,7 +65,7 @@ std::string ResolveProgressionSourcePath()
     }
 
     LOG_ERROR("server.loading",
-        "Progression: could not find the module source directory. Checked mod-02-progression and mod-progression under {}. Set Progression.ModuleDirectory if the module uses another folder name.",
+        "Progression: could not find the module source directory. Checked mod-azeroth-eras, mod-02-progression, and mod-progression under {}. Set Progression.ModuleDirectory if the module uses another folder name.",
         sourceDirectory.generic_string());
 
     return {};
@@ -112,7 +113,7 @@ std::vector<std::string> Progression::GetActivePatches()
     uint8 patchId = sConfigMgr->GetOption<uint8>("Progression.Patch", DEFAULT_PROGRESSION_PATCH);
     if (patchId >= PATCH_MAX)
     {
-        LOG_ERROR("server.loading", "Progression: patch id {} is invalid; falling back to patch 1.1 (id {}).", patchId, DEFAULT_PROGRESSION_PATCH);
+        LOG_ERROR("server.loading", "Progression: patch id {} is invalid; falling back to patch 1.0 (id {}).", patchId, DEFAULT_PROGRESSION_PATCH);
         patchId = DEFAULT_PROGRESSION_PATCH;
     }
 

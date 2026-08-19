@@ -2,7 +2,7 @@
 
 - Status: working design, 2026-08-15
 - Implementation target: AzerothCore and the 3.3.5a client
-- Current accuracy target: Vanilla 1.1 at level 60
+- Current accuracy target: Vanilla 1.0-1.6 at level 60
 
 ## Purpose
 
@@ -415,7 +415,7 @@ Every audit records the source URL or repository revision, the exact claim it su
 
 ## Current testing configuration
 
-For the current level-60 Vanilla 1.1 audit:
+For the current level-60 Vanilla 1.0-1.6 target (start at launch):
 
 ```ini
 Progression.LevelGating.Enabled = 1

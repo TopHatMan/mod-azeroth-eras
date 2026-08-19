@@ -109,6 +109,114 @@ uint8 GetRequiredProgressionLevelCapForMap(uint32 mapId)
         return 0;
     }
 }
+
+// Historical patch that first made this map available. 0 means launch-era / no patch gate.
+// Level milestones are a separate check; both must pass.
+uint8 GetRequiredProgressionPatchForMap(uint32 mapId)
+{
+    switch (mapId)
+    {
+    case 349: // Maraudon
+        return PATCH_MYSTERIES_OF_MARAUDON;
+
+    case 429: // Dire Maul
+        return PATCH_RUINS_OF_THE_DIRE_MAUL;
+
+    case 30:  // Alterac Valley
+    case 489: // Warsong Gulch
+        return PATCH_BATTLEGROUNDS;
+
+    case 469: // Blackwing Lair
+        return PATCH_ASSAULT_ON_BLACKWING_LAIR;
+
+    case 309: // Zul'Gurub
+    case 529: // Arathi Basin
+        return PATCH_RISE_OF_THE_BLOOD_GOD;
+
+    case 509: // Ruins of Ahn'Qiraj
+    case 531: // Temple of Ahn'Qiraj
+        return PATCH_THE_GATES_OF_AHN_QIRAJ;
+
+    case 533: // Naxxramas (Vanilla 40 via mod-vanilla-naxxramas; Wrath 10/25 from 3.0)
+        return PATCH_SHADOW_OF_THE_NECROPOLIS;
+
+    // TBC continent and 2.0 instances
+    case 269: // The Black Morass
+    case 530: // Outland (includes Blood Elf / Draenei starting zones)
+    case 532: // Karazhan
+    case 534: // Hyjal Summit
+    case 540: // The Shattered Halls
+    case 542: // The Blood Furnace
+    case 543: // Hellfire Ramparts
+    case 544: // Magtheridon's Lair
+    case 545: // The Steamvault
+    case 546: // The Underbog
+    case 547: // The Slave Pens
+    case 548: // Serpentshrine Cavern
+    case 550: // Tempest Keep
+    case 552: // The Arcatraz
+    case 553: // The Botanica
+    case 554: // The Mechanar
+    case 555: // Shadow Labyrinth
+    case 556: // Sethekk Halls
+    case 557: // Mana-Tombs
+    case 558: // Auchenai Crypts
+    case 560: // Old Hillsbrad Foothills
+    case 565: // Gruul's Lair
+    case 566: // Eye of the Storm
+        return PATCH_BEFORE_THE_STORM;
+
+    case 564: // Black Temple
+        return PATCH_BLACK_TEMPLE;
+
+    case 568: // Zul'Aman
+        return PATCH_THE_GODS_OF_ZUL_AMAN;
+
+    case 580: // Sunwell Plateau
+    case 585: // Magisters' Terrace
+        return PATCH_FURY_OF_THE_SUNWELL;
+
+    // Wrath continent and 3.0 instances
+    case 571: // Northrend
+    case 574: // Utgarde Keep
+    case 575: // Utgarde Pinnacle
+    case 576: // The Nexus
+    case 578: // The Oculus
+    case 595: // The Culling of Stratholme
+    case 599: // Halls of Stone
+    case 600: // Drak'Tharon Keep
+    case 601: // Azjol-Nerub
+    case 602: // Halls of Lightning
+    case 604: // Gundrak
+    case 608: // Violet Hold
+    case 615: // The Obsidian Sanctum
+    case 616: // The Eye of Eternity
+    case 619: // Ahn'kahet: The Old Kingdom
+    case 624: // Vault of Archavon
+        return PATCH_ECHOES_OF_DOOM;
+
+    case 603: // Ulduar
+        return PATCH_SECRETS_OF_ULDUAR;
+
+    case 607: // Strand of the Ancients
+    case 649: // Trial of the Crusader
+    case 650: // Trial of the Champion
+        return PATCH_CALL_OF_THE_CRUSADE;
+
+    case 628: // Isle of Conquest
+    case 631: // Icecrown Citadel
+    case 632: // The Forge of Souls
+    case 658: // Pit of Saron
+    case 668: // Halls of Reflection
+        return PATCH_FALL_OF_THE_LICH_KING;
+
+    case 724: // The Ruby Sanctum
+        return PATCH_ASSAULT_ON_THE_RUBY_SANCTUM;
+
+    default:
+        return 0;
+    }
+}
 }
 
 void Progression::OnPlayerUpdateArea(Player* player, uint32 /*oldArea*/, uint32 newArea)
@@ -118,6 +226,13 @@ void Progression::OnPlayerUpdateArea(Player* player, uint32 /*oldArea*/, uint32 
 
     if (player->IsInFlight())
         return;
+
+    if (sProgressionMgr->GetPatchId() < PATCH_FURY_OF_THE_SUNWELL && newArea == AREA_ISLE_OF_QUEL_DANAS)
+    {
+        player->GetSession()->SendAreaTriggerMessage("The Isle of Quel'Danas is currently unavailable.");
+        player->TeleportTo(530, 9333.0f, -7884.0f, 27.6f, 0.0f); // Silvermoon outskirts; map 530 is already open in TBC
+        return;
+    }
 
     if (sProgressionMgr->GetPatchId() < PATCH_CALL_OF_THE_CRUSADE)
     {
@@ -131,7 +246,18 @@ void Progression::OnPlayerUpdateArea(Player* player, uint32 /*oldArea*/, uint32 
 
 bool Progression::OnPlayerCanEnterMap(Player* player, MapEntry const* entry, InstanceTemplate const* /*instance*/, MapDifficulty const* /*mapDiff*/, bool loginCheck)
 {
-    if (!sProgressionMgr->IsLevelGatingEnabled() || !entry)
+    if (!entry)
+        return true;
+
+    uint8 requiredPatch = GetRequiredProgressionPatchForMap(entry->MapID);
+    if (requiredPatch && sProgressionMgr->GetPatchId() < requiredPatch)
+    {
+        if (!loginCheck && player)
+            player->GetSession()->SendAreaTriggerMessage("This content is not available in the current patch.");
+        return false;
+    }
+
+    if (!sProgressionMgr->IsLevelGatingEnabled())
         return true;
 
     uint8 requiredLevelCap = GetRequiredProgressionLevelCapForMap(entry->MapID);

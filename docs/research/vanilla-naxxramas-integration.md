@@ -37,9 +37,7 @@ The public upstream repository is provenance and issue-history reference materia
 
 ## Current integration status
 
-The level-60 runtime gate already recognizes map 533, but the patch-1.11 SQL does not currently remove the map disable. This is intentional until Azeroth Eras can verify that the patched Ashbringer Naxxramas 40 implementation is installed; blindly opening map 533 would expose Wrath content on installations without the module.
-
-For the current Ashbringer test server, preserve the already-patched module behavior and use a reversible map-disable change on a database clone. Do not import the Individual Progression Naxxramas bundle alongside it.
+The level-60 runtime gate and the patch-1.11 disable file both treat map 533 as a 1.11 unlock. This deployment uses `mod-vanilla-naxxramas` for the 40-player encounter. Do not import the Individual Progression Naxxramas bundle alongside it.
 
 ## Required implementation slices
 

@@ -21,7 +21,7 @@ void Progression::OnAfterConfigLoad(bool reload)
 
         if (patchId >= PATCH_MAX)
         {
-            LOG_ERROR("server.loading", "Patch ({}) must be in range 0..{}. Using patch 1.1 ({}).", patchId, PATCH_MAX - 1, DEFAULT_PROGRESSION_PATCH);
+            LOG_ERROR("server.loading", "Patch ({}) must be in range 0..{}. Using patch 1.0 ({}).", patchId, PATCH_MAX - 1, DEFAULT_PROGRESSION_PATCH);
             patchId = DEFAULT_PROGRESSION_PATCH;
         }
 
@@ -31,7 +31,7 @@ void Progression::OnAfterConfigLoad(bool reload)
             configuredLevelCap = DEFAULT_PROGRESSION_LEVEL_CAP;
         }
 
-        LOG_INFO("server.loading", ">> Patch ID set to {}", patchId);
+        LOG_INFO("server.loading", ">> Patch ID set to {} (ready target is 1.0-1.6 / IDs 0-{})", patchId, PROGRESSION_READY_TARGET_PATCH);
         sProgressionMgr->SetPatchId(patchId);
         sProgressionMgr->SetLevelGatingEnabled(levelGatingEnabled);
 

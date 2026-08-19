@@ -44,9 +44,11 @@ Progression.LevelCap = 60
 #        Description: The currently active World of Warcraft patch.
 #                     Patch SQL is cumulative: selecting 1.6 applies 1.1 through 1.6.
 #
-#                     0  - 1.1   World of Warcraft
+#                     Current ready target is 1.0 through 1.6 (IDs 0-5).
+#
+#                     0  - 1.0   World of Warcraft (launch; Blizzard client 1.1.0)
 #                     1  - 1.2   Mysteries of Maraudon
-#                     2  - 1.3   Ruins of the Dire Maul
+#                     2  - 1.3   Ruins of the Dire Maul (MC attunement)
 #                     3  - 1.4   The Call to War
 #                     4  - 1.5   Battlegrounds
 #                     5  - 1.6   Assault on Blackwing Lair
@@ -67,15 +69,16 @@ Progression.LevelCap = 60
 #                     20 - 3.3   Fall of the Lich King
 #                     21 - 3.3.5 Assault on the Ruby Sanctum
 #
-#        Default:     0 - Patch 1.1
+#        Default:     0 - Patch 1.0
 #
 Progression.Patch = 0
 
 #
 #    Progression.ModuleDirectory
 #        Description: Optional source-folder override for patch SQL auto-loading.
-#                     Leave unset for automatic detection of mod-02-progression or mod-progression.
-#        Example:     Progression.ModuleDirectory = mod-02-progression
+#                     Leave unset for automatic detection of mod-azeroth-eras,
+#                     mod-02-progression, or mod-progression.
+#        Example:     Progression.ModuleDirectory = mod-azeroth-eras
 #
 
 #

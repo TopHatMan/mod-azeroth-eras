@@ -8,7 +8,10 @@
 
 enum ProgressionPatch : uint8
 {
-    PATCH_WORLD_OF_WARCRAFT = 0,
+    // Launch. Blizzard's retail client called this 1.1.0; this project labels it 1.0
+    // so the playable ladder is 1.0 -> 1.2 -> ... -> 1.6 (current ready target).
+    PATCH_VANILLA_1_0 = 0,
+    PATCH_WORLD_OF_WARCRAFT = PATCH_VANILLA_1_0,
     PATCH_MYSTERIES_OF_MARAUDON,
     PATCH_RUINS_OF_THE_DIRE_MAUL,
     PATCH_THE_CALL_TO_WAR,
@@ -33,8 +36,12 @@ enum ProgressionPatch : uint8
     PATCH_MAX
 };
 
-constexpr uint8 DEFAULT_PROGRESSION_PATCH = PATCH_WORLD_OF_WARCRAFT;
+constexpr uint8 DEFAULT_PROGRESSION_PATCH = PATCH_VANILLA_1_0;
 constexpr uint8 DEFAULT_PROGRESSION_LEVEL_CAP = 60;
+// Headline gates for 1.0-1.6 are the current playable target. Later Vanilla
+// IDs still exist so a realm can keep walking the ladder, but they are not
+// the accuracy target yet.
+constexpr uint8 PROGRESSION_READY_TARGET_PATCH = PATCH_ASSAULT_ON_BLACKWING_LAIR;
 
 class Progression : public AllBattlegroundScript, DatabaseScript, MailScript, PlayerScript, UnitScript, WorldScript
 {
