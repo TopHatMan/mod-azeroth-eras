@@ -11,7 +11,7 @@ Do not confuse the configured patch ID with Blizzard's patch number:
 
 | `Progression.Patch` | Historical patch | Headline unlock |
 |---:|:---:|---|
-| `0` | 1.0 / launch client 1.1.0 | Launch world, MC, Onyxia |
+| `0` | 1.1 | Retail launch world, MC, Onyxia |
 | `1` | 1.2 | Maraudon |
 | `2` | 1.3 | Dire Maul and MC attunement |
 

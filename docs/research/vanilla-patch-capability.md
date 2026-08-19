@@ -2,7 +2,7 @@
 
 - Status: research for a live 1.1 -> 1.2 test, 2026-08-17
 - Sources: archived Blizzard patch notes via [Warcraft Wiki patch index](https://warcraft.wiki.gg/wiki/Patch), the existing module SQL/C++, and the Molten Core evidence file
-- There is **no public content patch called 1.0**. Closed-beta builds used 1.0.x. Retail launch is **1.1.0** (7 Nov 2004). This project treats patch ID `0` as launch.
+- There is **no public content patch called 1.0**. Closed-beta builds used 1.0.x. Retail launch is **1.1.0** (7 Nov 2004), represented by patch ID `0`.
 
 ## How to read the tables
 
@@ -31,9 +31,9 @@ Unsafe examples: adding a `patch` column to live `item_template`, rewriting hono
 
 ## Patch capability map
 
-### 1.0 — World of Warcraft (ID 0) — 7 Nov 2004 (Blizzard client 1.1.0)
+### 1.1 — World of Warcraft (ID 0) — 7 Nov 2004
 
-Launch world. This project labels it 1.0. MC and Onyxia exist. Enter MC through BRD (trigger 2886). No Lothos shortcut.
+Launch world. MC and Onyxia exist. Enter MC through BRD (trigger 2886). No Lothos shortcut.
 
 | Feature | Layer | In module? | Notes |
 |---|---|---|---|
@@ -46,7 +46,7 @@ Launch world. This project labels it 1.0. MC and Onyxia exist. Enter MC through 
 | Full launch item/vendor/recipe snapshot | SQL | No | Inherited updates only; vMaNGOS extract later |
 | Class/talent 1.1 behavior | Client + unsafe core | No | Approximate with damage/heal multipliers only |
 
-**Test on 1.0:** enter MC via BRD; Lothos hidden; Maraudon blocked; `.progression info` says `0 (1.0 World of Warcraft)`.
+**Test on 1.1:** enter MC via BRD; Lothos hidden; Maraudon blocked; `.progression info` says `0 (1.1 World of Warcraft)`.
 
 ### 1.2 — Mysteries of Maraudon (ID 1) — 18 Dec 2004
 

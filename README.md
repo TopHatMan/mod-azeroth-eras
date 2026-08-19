@@ -95,7 +95,7 @@ This rule was reinforced during the Vanilla audit by the Molten Core discovery/a
 
 | ID | Patch | Title |
 |---:|:---:|---|
-| 0 | 1.0 | World of Warcraft (launch; Blizzard 1.1.0) |
+| 0 | 1.1 | World of Warcraft (retail launch) |
 | 1 | 1.2 | Mysteries of Maraudon |
 | 2 | 1.3 | Ruins of the Dire Maul |
 | 3 | 1.4 | The Call to War |
@@ -108,9 +108,11 @@ This rule was reinforced during the Vanilla audit by the Molten Core discovery/a
 | 10 | 1.11 | Shadow of the Necropolis |
 | 11 | 1.12 | Drums of War |
 
-The **current ready target is 1.0 through 1.6** (IDs `0`–`5`): launch, Maraudon, Dire Maul / MC attunement, Honor, battlegrounds, and Blackwing Lair. See [`docs/vanilla-1.0-1.6-target.md`](docs/vanilla-1.0-1.6-target.md). Later Vanilla IDs still exist so the realm can keep walking the ladder, but they are not the accuracy target yet.
+The **current ready target is 1.1 through 1.6** (IDs `0`–`5`): launch, Maraudon, Dire Maul / MC attunement, Honor, battlegrounds, and Blackwing Lair. See [`docs/vanilla-1.1-1.6-target.md`](docs/vanilla-1.1-1.6-target.md). Later Vanilla IDs still exist so the realm can keep walking the ladder, but they are not the accuracy target yet.
 
-There is no separate public 1.1 content patch. Blizzard shipped launch as client 1.1.0; this project labels that state **1.0** so the playable steps are `1.0 → 1.2 → 1.3 → 1.4 → 1.5 → 1.6`.
+Blizzard shipped retail launch as client patch 1.1.0. Patch ID `0` therefore
+means Vanilla 1.1, and the playable steps are
+`1.1 → 1.2 → 1.3 → 1.4 → 1.5 → 1.6`.
 
 TBC and Wrath patch SQL is also present as a foundation, but those eras are not the current target.
 
@@ -165,7 +167,7 @@ A reset is not intended to be a permanent runtime mode.
 Progression.LevelGating.Enabled = 1
 Progression.LevelCap = 60
 Progression.Patch = 0
-# Advance 0 -> 1 -> 2 -> 3 -> 4 -> 5 for the 1.0-1.6 ready target.
+# Advance 0 -> 1 -> 2 -> 3 -> 4 -> 5 for the 1.1-1.6 ready target.
 Progression.Reset = 0
 Progression.Development.AllowUnsafeReset = 0
 ```
