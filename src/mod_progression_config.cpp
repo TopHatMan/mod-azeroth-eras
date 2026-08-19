@@ -12,6 +12,22 @@ void Progression::OnAfterConfigLoad(bool reload)
 {
     LOG_INFO("server.loading", "Progression...");
 
+    // Azeroth Eras replaces both legacy progression modules.  Their database,
+    // script, and combat hooks must not be active at the same time as this
+    // module or the realm can receive conflicting gates and compounded tuning.
+    if (sConfigMgr->GetOption<bool>("ProgressionSystem.LoadScripts", false) ||
+        sConfigMgr->GetOption<bool>("ProgressionSystem.LoadDatabase", false))
+    {
+        LOG_ERROR("server.loading",
+            "Azeroth Eras: legacy mod-progression-system is enabled. Remove/disable it before testing; its bracket SQL and scripts are not safe to stack with Azeroth Eras.");
+    }
+
+    if (sConfigMgr->GetOption<bool>("IndividualProgression.Enable", false))
+    {
+        LOG_ERROR("server.loading",
+            "Azeroth Eras: legacy mod-individual-progression is enabled. Remove/disable it before testing; running both modules can duplicate gates and damage/healing adjustments.");
+    }
+
     if (!reload)
     {
         uint8 patchId = sConfigMgr->GetOption<uint8>("Progression.Patch", DEFAULT_PROGRESSION_PATCH);

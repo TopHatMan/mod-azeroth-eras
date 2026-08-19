@@ -47,6 +47,17 @@ The supported milestone ladder is:
 
 Content is available only when both the level milestone and the historical patch allow it.
 
+For Vanilla, these are launch stages: the realm begins with the `1-10` stage,
+then advances through the ten-level stages until `50-59`. At level 60 the
+Chromie-style dungeon ladder is complete. Level gating no longer withholds a
+Vanilla dungeon, but historical patch gates, raid attunements, keys, and quest
+requirements continue to apply. Patch progression and level progression never
+unlock one another.
+
+For the first Dire Maul test, use `Progression.LevelCap = 60` and
+`Progression.Patch = 2`. Patch ID `1` is Vanilla 1.2 (Maraudon); Dire Maul was
+released in Vanilla 1.3 and is patch ID `2` in this module.
+
 ### 3. Progression scope
 
 The individual-progression merge will define **whose progression state is evaluated**, rather than maintaining a second independent content timeline.

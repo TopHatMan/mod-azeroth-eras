@@ -51,6 +51,22 @@ class VanillaGatingTests(unittest.TestCase):
             source.find("IsLevelGatingEnabled"),
         )
 
+    def test_level_60_finishes_vanilla_chromie_gate_without_bypassing_patch_gate(self):
+        source = read(PLAYER)
+        patch_check = source.index("GetRequiredProgressionPatchForMap", source.index("OnPlayerCanEnterMap"))
+        vanilla_completion = source.index("GetLevelCap() >= 60", patch_check)
+        level_table = source.index("GetRequiredProgressionLevelCapForMap", vanilla_completion)
+        self.assertLess(patch_check, vanilla_completion)
+        self.assertLess(vanilla_completion, level_table)
+        self.assertIn("PATCH_BEFORE_THE_STORM", source[vanilla_completion - 160:vanilla_completion + 80])
+
+    def test_legacy_progression_modules_are_reported_as_conflicts(self):
+        config = read(SRC / "mod_progression_config.cpp")
+        self.assertIn('ProgressionSystem.LoadScripts', config)
+        self.assertIn('ProgressionSystem.LoadDatabase', config)
+        self.assertIn('IndividualProgression.Enable', config)
+        self.assertIn('compounded tuning', config)
+
     def test_runtime_vanilla_patch_boundaries(self):
         source = read(PLAYER)
         start = source.index("GetRequiredProgressionPatchForMap")
