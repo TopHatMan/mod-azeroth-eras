@@ -49,6 +49,14 @@ Keep only `mod-azeroth-eras` as the progression owner. Remove their generated
 configuration files from the runtime config directory as well. Azeroth Eras
 logs an error during startup if it sees either legacy module enabled.
 
+Removing a module does **not** undo SQL it previously applied. If
+`mod-progression-system` ever loaded bracket SQL into this world database, use a
+known pre-module snapshot or a fresh AzerothCore world database for the proof
+run. Likewise, old `patch_*` rows in the world `updates` table can cause the
+database updater to regard same-named files as already applied. Do not delete
+those records on a production database; begin the test from a disposable,
+verified baseline instead.
+
 If another module modifies player damage or healing, set the Azeroth Eras
 multipliers to `1.0` so only one module owns combat tuning.
 
