@@ -1,10 +1,15 @@
 #include "ArenaSeasonMgr.h"
+#include "Log.h"
 
 #include "mod_progression.h"
 
 void Progression::OnStartup()
 {
     uint8 patchId = sProgressionMgr->GetPatchId();
+
+    LOG_INFO("server.loading", "Azeroth Eras active: patch ID {} ({}), level cap {}, level gates {}.",
+        patchId, GetProgressionPatchDisplayName(patchId), sProgressionMgr->GetLevelCap(),
+        sProgressionMgr->IsLevelGatingEnabled() ? "enabled" : "disabled");
 
     if (patchId < PATCH_BEFORE_THE_STORM)
     {

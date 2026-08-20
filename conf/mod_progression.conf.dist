@@ -81,6 +81,14 @@ Progression.LevelCap = 60
 Progression.Patch = 0
 
 #
+#    Progression.Announce.Enabled
+#        Description: Show each player an Azeroth Eras status message at login,
+#                     including the active historical patch and level gate.
+#        Default:     1
+#
+Progression.Announce.Enabled = 1
+
+#
 #    Progression.ModuleDirectory
 #        Description: Optional source-folder override for patch SQL auto-loading.
 #                     Leave unset for automatic detection of mod-azeroth-eras,

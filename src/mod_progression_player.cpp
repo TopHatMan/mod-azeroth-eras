@@ -1,3 +1,5 @@
+#include "Chat.h"
+#include "Config.h"
 #include "Player.h"
 
 #include "mod_progression.h"
@@ -217,6 +219,18 @@ uint8 GetRequiredProgressionPatchForMap(uint32 mapId)
         return 0;
     }
 }
+}
+
+void Progression::OnPlayerLogin(Player* player)
+{
+    if (!sConfigMgr->GetOption<bool>("Progression.Announce.Enabled", true))
+        return;
+
+    ChatHandler handler(player->GetSession());
+    handler.PSendSysMessage("Azeroth Eras is active - patch ID {}: {}.",
+        sProgressionMgr->GetPatchId(), GetProgressionPatchDisplayName(sProgressionMgr->GetPatchId()));
+    handler.PSendSysMessage("Progression level cap: {} (level gates {}). Use .progression info for details.",
+        sProgressionMgr->GetLevelCap(), sProgressionMgr->IsLevelGatingEnabled() ? "enabled" : "disabled");
 }
 
 void Progression::OnPlayerUpdateArea(Player* player, uint32 /*oldArea*/, uint32 newArea)

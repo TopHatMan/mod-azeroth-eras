@@ -13,7 +13,7 @@ INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, 
 (1, 7487, 0, '', '', 'Attunement to the Core (Alliance) - patch 1.3'),
 (1, 7848, 0, '', '', 'Attunement to the Core (Horde) - patch 1.3');
 
-UPDATE `creature` SET `phaseMask` = 16384 WHERE `id1` = 14387; -- Lothos Riftwaker
+UPDATE `creature` SET `phaseMask` = 16384 WHERE `id` = 14387; -- Lothos Riftwaker
 UPDATE `gameobject` SET `phaseMask` = 16384 WHERE `id` = 179553; -- Core Fragment
 
 -- Keep the physical BRD portal untouched. These are only the post-attunement

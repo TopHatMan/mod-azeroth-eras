@@ -25,7 +25,7 @@ class MoltenCoreProgressionBundleTests(unittest.TestCase):
         )
         self.assertRegex(self.patch_11, r"\(1, 7487, .*patch 1\.3'\)")
         self.assertRegex(self.patch_11, r"\(1, 7848, .*patch 1\.3'\)")
-        self.assertRegex(self.patch_11, r"phaseMask` = 16384 WHERE `id1` = 14387")
+        self.assertRegex(self.patch_11, r"phaseMask` = 16384 WHERE `id` = 14387")
         self.assertRegex(self.patch_11, r"phaseMask` = 16384 WHERE `id` = 179553")
 
     def test_physical_entrance_is_not_bound_to_shortcut_gate(self) -> None:
@@ -41,7 +41,7 @@ class MoltenCoreProgressionBundleTests(unittest.TestCase):
 
     def test_patch_13_unlocks_complete_bundle_and_places_fragment_inside_mc(self) -> None:
         self.assertRegex(self.patch_13, r"entry` IN \(7487, 7848\)")
-        self.assertRegex(self.patch_13, r"phaseMask` = 1 WHERE `id1` = 14387")
+        self.assertRegex(self.patch_13, r"phaseMask` = 1 WHERE `id` = 14387")
         self.assertRegex(self.patch_13, r"`map` = 409,")
         self.assertRegex(self.patch_13, r"WHERE `id` = 179553")
 
