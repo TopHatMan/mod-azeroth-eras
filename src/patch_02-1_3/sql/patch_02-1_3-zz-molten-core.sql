@@ -5,7 +5,7 @@
 DELETE FROM `disables` WHERE `sourceType` = 1 AND `entry` IN (7487, 7848);
 DELETE FROM `disables` WHERE `sourceType` = 2 AND `entry` = 409;
 
-UPDATE `creature` SET `phaseMask` = 1 WHERE `id1` = 14387; -- Lothos Riftwaker
+UPDATE `creature` SET `phaseMask` = 1 WHERE `id` = 14387; -- Lothos Riftwaker
 
 -- Reuse AzerothCore's canonical Core Fragment spawn (GUID 43133) and move it
 -- just inside the raid entrance for the short-lived 1.3 layout.

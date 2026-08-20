@@ -44,9 +44,10 @@ class MaraudonProgressionBundleTests(unittest.TestCase):
 
     def test_runtime_and_info_command_name_the_1_2_boundary(self):
         self.assertIn("PATCH_MYSTERIES_OF_MARAUDON", self.player)
-        self.assertIn("1.1 World of Warcraft", self.info)
-        self.assertIn("1.2 Mysteries of Maraudon", self.info)
-        self.assertIn("1.3 Ruins of the Dire Maul (MC attunement)", self.info)
+        patch_names = (ROOT / "src" / "mod_progression.cpp").read_text()
+        self.assertIn("1.1 World of Warcraft", patch_names)
+        self.assertIn("1.2 Mysteries of Maraudon", patch_names)
+        self.assertIn("1.3 Ruins of the Dire Maul (MC attunement)", patch_names)
         self.assertIn("Ready target: 1.1-1.6", self.info)
 
 

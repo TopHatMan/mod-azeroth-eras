@@ -43,6 +43,8 @@ constexpr uint8 DEFAULT_PROGRESSION_LEVEL_CAP = 60;
 // the accuracy target yet.
 constexpr uint8 PROGRESSION_READY_TARGET_PATCH = PATCH_ASSAULT_ON_BLACKWING_LAIR;
 
+char const* GetProgressionPatchDisplayName(uint8 patchId);
+
 class Progression : public AllBattlegroundScript, DatabaseScript, MailScript, PlayerScript, UnitScript, WorldScript
 {
 public:
@@ -58,6 +60,7 @@ public:
     void OnBeforeMailDraftSendMailTo(MailDraft* /*mailDraft*/, MailReceiver const& /*receiver*/, MailSender const& /*sender*/, MailCheckMask& /*checked*/, uint32& /*deliver_delay*/, uint32& /*custom_expiration*/, bool& /*deleteMailItemsFromDB*/, bool& /*sendMail*/) override;
 
     // PlayerScript
+    void OnPlayerLogin(Player* /*player*/) override;
     void OnPlayerUpdateArea(Player* /*player*/, uint32 /*oldArea*/, uint32 /*newArea*/) override;
     bool OnPlayerShouldBeRewardedWithMoneyInsteadOfExp(Player* /*player*/) override;
     bool OnPlayerUpdateFishingSkill(Player* /*player*/, int32 /*skill*/, int32 /*zone_skill*/, int32 /*chance*/, int32 /*roll*/) override;

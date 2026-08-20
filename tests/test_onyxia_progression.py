@@ -16,7 +16,7 @@ class OnyxiaProgressionBundleTests(unittest.TestCase):
         self.horde = read("src/patch_00-1_1/sql/patch_00-1_1-zz-onyxia-horde.sql")
 
     def test_launch_restores_emberstrife(self) -> None:
-        self.assertIn("WHERE `id1` = 10321", self.launch)
+        self.assertIn("WHERE `id` = 10321", self.launch)
 
     def test_launch_restores_rexxar_instead_of_rokaros_spawn(self) -> None:
         self.assertIn("`name` = 'Rexxar'", self.horde)

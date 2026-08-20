@@ -92,7 +92,7 @@ INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`,
 UPDATE `creature_model_info` SET `DisplayID_Other_Gender` = 11660 WHERE `DisplayID` = 11660;
 
 DELETE FROM `creature` WHERE `guid` IN (29113, 610204);
-INSERT INTO `creature` (`guid`, `id1`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`,
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`,
 `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 (29113, 10182, 1, 0, 0, 1, 1, 1, 248.28, 1834.76, 86.2291, 3.32486, 550, 0, 1, 647400, 0, 2, 0, 0, 0, '', 0, 0, NULL),
 (610204, 10204, 1, 0, 0, 1, 1, 0, 247.329, 1830.72, 86.2303, 3.36506, 550, 0, 0, 161850, 0, 0, 0, 0, 0, '', 0, 0, NULL);
