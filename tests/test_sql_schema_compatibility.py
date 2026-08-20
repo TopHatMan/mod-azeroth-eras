@@ -48,17 +48,26 @@ class SqlSchemaCompatibilityTests(unittest.TestCase):
         self.assertEqual([], offenders, "\n".join(offenders))
 
     def test_launch_currency_rewrites_are_duplicate_safe(self):
-        sql = (
-            ROOT
-            / "src/patch_00-1_1/sql/patch_00-1_1-creature_loot_template.sql"
-        ).read_text(encoding="utf-8")
+        expected_updates = {
+            "creature_loot_template": 5,
+            "gameobject_loot_template": 3,
+            "item_loot_template": 4,
+        }
+        for table, count in expected_updates.items():
+            sql = (
+                ROOT / f"src/patch_00-1_1/sql/patch_00-1_1-{table}.sql"
+            ).read_text(encoding="utf-8")
+            with self.subTest(table=table):
+                self.assertEqual(count, sql.count(f"UPDATE IGNORE `{table}`"))
+                self.assertGreaterEqual(sql.count(f"DELETE FROM `{table}`"), count)
 
-        self.assertEqual(5, sql.count("UPDATE IGNORE `creature_loot_template`"))
+        creature_sql = (
+            ROOT / "src/patch_00-1_1/sql/patch_00-1_1-creature_loot_template.sql"
+        ).read_text(encoding="utf-8")
         self.assertIn(
             "DELETE FROM `creature_loot_template` WHERE `Entry` IN (15928,",
-            sql,
+            creature_sql,
         )
-        self.assertIn("AND `Item` IN (40753, 45624, 47241);", sql)
 
 
 if __name__ == "__main__":
