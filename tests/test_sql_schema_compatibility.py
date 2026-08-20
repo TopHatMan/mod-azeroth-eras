@@ -47,6 +47,19 @@ class SqlSchemaCompatibilityTests(unittest.TestCase):
 
         self.assertEqual([], offenders, "\n".join(offenders))
 
+    def test_launch_currency_rewrites_are_duplicate_safe(self):
+        sql = (
+            ROOT
+            / "src/patch_00-1_1/sql/patch_00-1_1-creature_loot_template.sql"
+        ).read_text(encoding="utf-8")
+
+        self.assertEqual(5, sql.count("UPDATE IGNORE `creature_loot_template`"))
+        self.assertIn(
+            "DELETE FROM `creature_loot_template` WHERE `Entry` IN (15928,",
+            sql,
+        )
+        self.assertIn("AND `Item` IN (40753, 45624, 47241);", sql)
+
 
 if __name__ == "__main__":
     unittest.main()
