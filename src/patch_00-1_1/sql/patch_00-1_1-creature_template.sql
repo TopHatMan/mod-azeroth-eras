@@ -23,7 +23,8 @@ UPDATE `creature_template` SET `minlevel` = 60, `maxlevel` = 60, `rank` = 0 WHER
 UPDATE `creature_template` SET `minlevel` = 63, `maxlevel` = 63 WHERE `entry` IN (2784, 2784, 3057, 3057, 4949, 4949, 7937, 7999, 10181, 10181);
 UPDATE `creature_template` SET `minlevel` = 65, `maxlevel` = 65 WHERE `entry` IN (16222, 16733, 24996, 24997, 24998, 25007, 25021, 25022, 25023, 25024);
 UPDATE `creature_template` SET `minlevel` = 73, `maxlevel` = 73 WHERE `entry` IN (16802, 17468);
-UPDATE `creature_template` SET `minlevel` = 63, `maxlevel` = 63, `exp` = 0, `scale` = 2.2, `DamageModifier` = 18, `BaseAttackTime` = 2000, `RangeAttackTime` = 1000, `mingold` = 1065700, `maxgold` = 1065700, `AIName` = 'SmartAI', `flags_extra` = `flags_extra` & ~1 WHERE `entry` = 12397;
+UPDATE `creature_template` SET `minlevel` = 63, `maxlevel` = 63, `exp` = 0, `DamageModifier` = 18, `BaseAttackTime` = 2000, `RangeAttackTime` = 1000, `mingold` = 1065700, `maxgold` = 1065700, `AIName` = 'SmartAI', `flags_extra` = `flags_extra` & ~1 WHERE `entry` = 12397;
+UPDATE `creature_template_model` SET `DisplayScale` = 2.2 WHERE `CreatureID` = 12397;
 UPDATE `creature_template` SET `DamageModifier` = 13.15, `BaseAttackTime` = 2000, `RangeAttackTime` = 1250, `mingold` = 31740, `maxgold` = 158699, `AIName` = 'SmartAI' WHERE `entry` = 14435;
 UPDATE `creature_template` SET `HealthModifier` = 51 WHERE `entry` = 15687;
 UPDATE `creature_template` SET `HealthModifier` = 100 WHERE `entry` IN (15688, 18831, 25508);

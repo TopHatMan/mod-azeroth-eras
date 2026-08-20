@@ -30,6 +30,32 @@ class SqlSchemaCompatibilityTests(unittest.TestCase):
                 self.assertNotIn("`id3`", sql)
                 self.assertIn("INSERT INTO `creature` (`guid`, `id`, `map`", sql)
 
+    def test_creature_template_scale_uses_model_table(self):
+        offenders = []
+        for path in SRC.rglob("*creature_template.sql"):
+            sql = path.read_text(encoding="utf-8")
+            if "`scale`" in sql:
+                offenders.append(str(path.relative_to(ROOT)))
+
+        self.assertEqual([], offenders, "\n".join(offenders))
+
+        vanilla = (
+            ROOT / "src/patch_00-1_1/sql/patch_00-1_1-creature_template.sql"
+        ).read_text(encoding="utf-8")
+        tbc = (
+            ROOT / "src/patch_12-2_0/sql/patch_12-2_0-creature_template.sql"
+        ).read_text(encoding="utf-8")
+        self.assertIn(
+            "UPDATE `creature_template_model` SET `DisplayScale` = 2.2 "
+            "WHERE `CreatureID` = 12397;",
+            vanilla,
+        )
+        self.assertIn(
+            "UPDATE `creature_template_model` SET `DisplayScale` = 1 "
+            "WHERE `CreatureID` = 12397;",
+            tbc,
+        )
+
     def test_patch_sql_never_mutates_character_quest_storage(self):
         forbidden = (
             "character_queststatus",

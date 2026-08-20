@@ -8,5 +8,6 @@ UPDATE `creature_template` SET `minlevel` = 69, `maxlevel` = 70 WHERE `entry` IN
 UPDATE `creature_template` SET `minlevel` = 70, `maxlevel` = 70 WHERE `entry` IN (8383, 15184, 16378);
 UPDATE `creature_template` SET `minlevel` = 72, `maxlevel` = 72 WHERE `entry` IN (466, 2425, 11832);
 UPDATE `creature_template` SET `minlevel` = 73, `maxlevel` = 73 WHERE `entry` IN (2784, 3057, 4949, 7937, 7999, 10181, 10540);
-UPDATE `creature_template` SET `minlevel` = 73, `maxlevel` = 73, `exp` = 1, `scale` = 1, `DamageModifier` = 50, `BaseAttackTime` = 800, `RangeAttackTime` = 2000, `mingold` = 28305, `maxgold` = 36968, `AIName` = '', `flags_extra` = `flags_extra` | 1 WHERE `entry` = 12397;
+UPDATE `creature_template` SET `minlevel` = 73, `maxlevel` = 73, `exp` = 1, `DamageModifier` = 50, `BaseAttackTime` = 800, `RangeAttackTime` = 2000, `mingold` = 28305, `maxgold` = 36968, `AIName` = '', `flags_extra` = `flags_extra` | 1 WHERE `entry` = 12397;
+UPDATE `creature_template_model` SET `DisplayScale` = 1 WHERE `CreatureID` = 12397;
 UPDATE `creature_template` SET `DamageModifier` = 40, `mingold` = 29155, `maxgold` = 38078 WHERE `entry` = 14435;
