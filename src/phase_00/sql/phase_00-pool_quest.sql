@@ -1,5 +1,7 @@
 SET @TemplateId := 87000;
-DELETE FROM `pool_quest` WHERE `pool_entry` IN (5678, @TemplateId+0);
+DELETE FROM `pool_quest`
+WHERE `pool_entry` IN (5678, @TemplateId+0)
+   OR `entry` IN (13240, 13241, 13243, 13244, 13245, 13246, 13247, 13248, 13249, 13250, 13251, 13252, 13253, 13254, 13255, 13256);
 INSERT INTO `pool_quest` (`entry`, `pool_entry`, `description`) VALUES
 -- Raiding weeklies
 (13245, 5678, 'Proof of Demise: Ingvar the Plunderer'),

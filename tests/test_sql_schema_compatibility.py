@@ -95,6 +95,30 @@ class SqlSchemaCompatibilityTests(unittest.TestCase):
             creature_sql,
         )
 
+    def test_pool_quest_inserts_delete_by_primary_entry(self):
+        offenders = []
+        for path in SRC.rglob("*pool_quest.sql"):
+            sql = path.read_text(encoding="utf-8")
+            inserted_entries = {
+                int(entry)
+                for entry in __import__("re").findall(r"^\((\d+),", sql, __import__("re").M)
+            }
+            if not inserted_entries:
+                continue
+
+            deleted_entries = {
+                int(entry)
+                for group in __import__("re").findall(
+                    r"DELETE FROM `pool_quest`.*?;", sql, __import__("re").S
+                )
+                for entry in __import__("re").findall(r"\b\d+\b", group.split("`entry`", 1)[-1])
+            }
+            missing = sorted(inserted_entries - deleted_entries)
+            if missing:
+                offenders.append(f"{path.relative_to(ROOT)} does not delete entries {missing}")
+
+        self.assertEqual([], offenders, "\n".join(offenders))
+
 
 if __name__ == "__main__":
     unittest.main()
